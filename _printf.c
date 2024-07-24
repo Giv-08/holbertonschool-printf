@@ -1,4 +1,4 @@
-#include <main.h>
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 /**
@@ -21,11 +21,15 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '\0')
+				break;
+
 			printf_sp = get_specifier(*format);
 
-			if (print_sp)
+			if (printf_sp)
 			{
 				printf_sp(args);
+				printed_chars++;
 			}
 		       	else
 			{

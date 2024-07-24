@@ -2,19 +2,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * get_specifer - selects the correct function of the format specifier
- * @s: the specifier character to checl.
+ * get_specifier - selects the correct function for the format specifier
+ * @s: the specifier character to check
  *
  * Return: pointer to the function chosen.
  */
-char (*get_specifer(char s))(va_list)
+void (*get_specifier(char s))(va_list)
 {
 	specifier_t conversion[] = {
 		{"%", print_percent},
 		{"c", print_char},
 		{"s", print_string},
-		{"d", print_signed_int},
-		{"i", print_signed_int},
+		{"d", print_int},
+		{"i", print_int},
 		{NULL, NULL}
 	};
 
@@ -27,6 +27,6 @@ char (*get_specifer(char s))(va_list)
 			return (conversion[i].printf_sp);
 		}
 		i++;
-
+	}
 	return (NULL);
 }
