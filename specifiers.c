@@ -10,6 +10,7 @@
 void print_char(va_list args)
 {
 	char c = (char) va_arg(args, int);
+
 	_putchar(c);
 }
 
@@ -48,11 +49,8 @@ void print_int(va_list args)
 		_putchar('-');
 		n = -n;
 	}
-	if (n / 10)
-	{
-		print_signed_int(n / 10);
-	}
-	_putchar(n % 10 + '0');
+
+	print_signed_int(n);
 }
 
 /**
