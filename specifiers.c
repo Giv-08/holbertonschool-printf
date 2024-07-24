@@ -40,31 +40,33 @@ void print_string(va_list args)
  * @args: take 'args' as an argument
  */
 
-void print_int(va_list args)
+void print_int(va_list arg)
 {
-	int n = va_arg(args, int);
+	int num = va_arg(arg, int);
+	unsigned int pos_num;
+	int total_in_number = 1;
 
-	if (n < 0)
+	if (num < 0)
 	{
 		_putchar('-');
-		n = -n;
+		pos_num = -num;
 	}
-
-	print_signed_int(n);
-}
-
-/**
- * print_signed_int - prints char
- * @n: take 'n' as an argument
- */
-
-void print_signed_int(int n)
-{
-	if (n / 10)
+	else
 	{
-		print_signed_int(n / 10);
+		pos_num = num;
 	}
-	_putchar(n % 10 + '0');
+
+	while (pos_num / total_in_number >= 10)
+	{
+		total_in_number = total_in_number * 10;
+	} 
+
+	while (total_in_number > 0)
+	{
+		_putchar((pos_num / total_in_number) + '0');
+		pos_num = pos_num % total_in_number;
+		total_in_number /= 10;
+	}
 }
 
 /**
