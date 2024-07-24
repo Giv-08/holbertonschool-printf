@@ -11,7 +11,7 @@ void print_char(va_list args)
 }
 
 /**
- * print_char - prints char
+ * print_string - prints strings
  * @args: take 'args' as an argument
  */
 
@@ -19,9 +19,10 @@ void print_string(va_list args)
 {
 	int i = 0;
 	char *str = va_arg(args, char *);
+
 	if (str == NULL)
 	{
-		str = "(null)" 
+		str = "(null)"
 	}
 	while (str[i] != '\0')
 	{
@@ -46,21 +47,21 @@ void print_int(va_list args)
 	}
 	if (n / 10)
 	{
-		print_signed(n / 10);
+		print_signed_int(n / 10);
 	}
 	_putchar(n % 10 + '0');
 }
 
 /**
- * print_unsigned - prints char
- * @args: take 'args' as an argument
+ * print_signed_int - prints char
+ * @n: take 'n' as an argument
  */
 
-void print_signed(int n)
+void print_signed_int(int n)
 {
 	if (n / 10)
 	{
-		print_signed(n / 10);
+		print_signed_int(n / 10);
 	}
 	_putchar(n % 10 + '0');
 }
