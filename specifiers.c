@@ -1,26 +1,28 @@
-#include <stdio.h>
 #include "main.h"
-#include "stdarg.h"
 
 /**
  * print_char - prints char
- * @c: take char 'c' as an argument
+ * @args: take 'args' as an argument
  */
 
-void print_char(char c)
+void print_char(va_list args)
 {
-	_putchar(c);
+	_putchar(va_arg(args, int));
 }
 
 /**
  * print_char - prints char
- * @str: take char '*str' as an argument
+ * @args: take 'args' as an argument
  */
 
-void print_string(char *str)
+void print_string(va_list args)
 {
 	int i = 0;
-	
+	char *str = va_arg(args, char *);
+	if (str == NULL)
+	{
+		str = "(null)" 
+	}
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
@@ -29,38 +31,48 @@ void print_string(char *str)
 }
 
 /**
- * print_unsigned - prints char
- * @n: take int 'n' as an argument
+ * print_int - prints integers
+ * @args: take 'args' as an argument
  */
 
-void print_signed(signed int n)
+void print_int(va_list args)
 {
-	unsigned int num;
+	int n = va_arg(args, int);
+
 	if (n < 0)
 	{
 		_putchar('-');
-		num = -n;
+		n = -n;
 	}
-	else
+	if (n / 10)
 	{
-		num = n;
+		print_signed(n / 10);
 	}
-	if (num / 10)
+	_putchar(n % 10 + '0');
+}
+
+/**
+ * print_unsigned - prints char
+ * @args: take 'args' as an argument
+ */
+
+void print_signed(int n)
+{
+	if (n / 10)
 	{
-		print_signed(num / 10);
+		print_signed(n / 10);
 	}
-	_putchar((num % 10) + '0');
+	_putchar(n % 10 + '0');
 }
 
 /**
  * print_percent - prints a %
- * @p: take char 'p' as an argument
+ * @args: take 'args' as an argument
  */
 
-void print_percent(char p)
+void print_percent(va_list args)
 {
-	if (p == '%')
-	{
-		_putchar('%');
-	}
+	(void)args;
+
+	_putchar('%');
 }
