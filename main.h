@@ -1,15 +1,20 @@
-#include <stdarg.h>
 #ifndef VARIADIC_FUNCTIONS_H
 #define VARIADIC_FUNCTIONS_H
 
-/** 
-* structure - a new type to print variables
-*
-*/
+#include <stdarg.h>
 
-typedef struct specifier {
-    char *specifier;
-    void (*printf_sp)(va_list args);
+/**
+ * struct specifier - Struct to map format specifiers
+ * to their corresponding functions.
+ * @specifier: The format specifier as a string
+ * @printf_sp: Function pointer to the handler
+ * function that processes the specifier.
+ */
+
+typedef struct specifier
+{
+	char *specifier;
+	void (*printf_sp)(va_list args);
 } specifier_t;
 
 void _putchar(char c);
