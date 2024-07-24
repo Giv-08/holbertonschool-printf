@@ -1,13 +1,14 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 /**
  * get_specifier - selects the correct function for the format specifier
  * @s: the specifier character to check
  *
  * Return: pointer to the function chosen.
  */
-void (*get_specifier(char s))(va_list)
+int (*get_specifier(char s))(va_list)
 {
 	specifier_t conversion[] = {
 		{"%", print_percent},

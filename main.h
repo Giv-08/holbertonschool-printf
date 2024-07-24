@@ -14,15 +14,15 @@
 typedef struct specifier
 {
 	char *specifier;
-	void (*printf_sp)(va_list args);
+	int (*printf_sp)(va_list);
 } specifier_t;
 
 void _putchar(char c);
 int _printf(const char *format, ...);
-void print_char(va_list args);
-void print_string(va_list args);
-void print_int(va_list args);
-void print_percent(va_list args);
-void (*get_specifier(char s))(va_list);
+int print_char(va_list args);
+int print_string(va_list args);
+int print_int(va_list args);
+int print_percent(va_list args);
+int (*get_specifier(char s))(va_list);
 
 #endif

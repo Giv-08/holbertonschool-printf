@@ -1,25 +1,25 @@
 #include "main.h"
-#include <stdarg.h>
 #include <stddef.h>
 
 /**
  * print_char - prints char
  * @args: take 'args' as an argument
+ * Return: 0
  */
 
-void print_char(va_list args)
+int print_char(va_list args)
 {
-	char c = (char) va_arg(args, int);
-
-	_putchar(c);
+	_putchar(va_arg(args, int));
+	return (0);
 }
 
 /**
  * print_string - prints strings
  * @args: take 'args' as an argument
+ * Return: string length
  */
 
-void print_string(va_list args)
+int print_string(va_list args)
 {
 	int i = 0;
 	char *str = va_arg(args, char *);
@@ -33,50 +33,58 @@ void print_string(va_list args)
 		_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
 /**
  * print_int - prints integers
  * @args: take 'args' as an argument
+ * Return: an int
  */
 
-void print_int(va_list arg)
+int print_int(va_list arg)
 {
 	int num = va_arg(arg, int);
 	unsigned int pos_num;
-	int total_in_number = 1;
+	int len, x = 1, i = 0;
 
 	if (num < 0)
 	{
 		_putchar('-');
 		pos_num = -num;
+		i++;
 	}
 	else
 	{
 		pos_num = num;
 	}
 
-	while (pos_num / total_in_number >= 10)
+	while (pos_num / x >= 10)
 	{
-		total_in_number = total_in_number * 10;
+		x = x * 10;
 	} 
 
-	while (total_in_number > 0)
+	while (x > 0)
 	{
-		_putchar((pos_num / total_in_number) + '0');
-		pos_num = pos_num % total_in_number;
-		total_in_number /= 10;
+		len = pos_num / x;
+		_putchar(len + '0');
+		pos_num = pos_num % x;
+		x = x / 10;
+		i++;
 	}
+	return (i);
 }
 
 /**
  * print_percent - prints a %
  * @args: take 'args' as an argument
+ * Return: 0
  */
 
-void print_percent(va_list args)
+int print_percent(va_list args)
 {
 	(void)args;
 
 	_putchar('%');
+	return (0);
 }
