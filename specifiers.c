@@ -33,18 +33,23 @@ void print_string(char *str)
  * @n: take int 'n' as an argument
  */
 
-void print_unsigned(unsigned int n)
+void print_signed(signed int n)
 {
-	if (n == 0)
+	unsigned int num;
+	if (n < 0)
 	{
-		_putchar('0');
-		return;
+		_putchar('-');
+		num = -n;
 	}
-	if (n / 10)
+	else
 	{
-		print_unsigned(n / 10);
+		num = n;
 	}
-	_putchar((n % 10) + 48);
+	if (num / 10)
+	{
+		print_signed(num / 10);
+	}
+	_putchar((num % 10) + '0');
 }
 
 /**
