@@ -1,0 +1,78 @@
+#include "main.h"
+
+/**
+ * print_char - prints char
+ * @args: take 'args' as an argument
+ */
+
+void print_char(va_list args)
+{
+	_putchar(va_arg(args, int));
+}
+
+/**
+ * print_char - prints char
+ * @args: take 'args' as an argument
+ */
+
+void print_string(va_list args)
+{
+	int i = 0;
+	char *str = va_arg(args, char *);
+	if (str == NULL)
+	{
+		str = "(null)" 
+	}
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
+}
+
+/**
+ * print_int - prints integers
+ * @args: take 'args' as an argument
+ */
+
+void print_int(va_list args)
+{
+	int n = va_arg(args, int);
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+	}
+	if (n / 10)
+	{
+		print_signed(n / 10);
+	}
+	_putchar(n % 10 + '0');
+}
+
+/**
+ * print_unsigned - prints char
+ * @args: take 'args' as an argument
+ */
+
+void print_signed(int n)
+{
+	if (n / 10)
+	{
+		print_signed(n / 10);
+	}
+	_putchar(n % 10 + '0');
+}
+
+/**
+ * print_percent - prints a %
+ * @args: take 'args' as an argument
+ */
+
+void print_percent(va_list args)
+{
+	(void)args;
+
+	_putchar('%');
+}
