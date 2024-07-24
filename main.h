@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #ifndef VARIADIC_FUNCTIONS_H
 #define VARIADIC_FUNCTIONS_H
 
@@ -11,6 +12,7 @@ typedef struct specifier {
     void (*printf_sp)(va_list args);
 } specifier_t;
 
+void _putchar(char c);
 int _printf(const char *format, ...);
 void print_char(va_list args);
 void print_string(va_list args);

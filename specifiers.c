@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stddef.h>
 
 /**
  * print_char - prints char
@@ -7,7 +9,8 @@
 
 void print_char(va_list args)
 {
-	_putchar(va_arg(args, int));
+	char c = (char) va_arg(args, int);
+	_putchar(c);
 }
 
 /**
@@ -22,7 +25,7 @@ void print_string(va_list args)
 
 	if (str == NULL)
 	{
-		str = "(null)"
+		str = "(null)";
 	}
 	while (str[i] != '\0')
 	{
