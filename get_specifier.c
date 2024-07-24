@@ -9,12 +9,12 @@
  */
 char (*get_specifer(char s))(va_list)
 {
-	specifer_t conversion[] = {
+	specifier_t conversion[] = {
 		{"%", print_percent},
 		{"c", print_char},
 		{"s", print_string},
-		{"d", print_signed},
-		{"i", print_signed},
+		{"d", print_signed_int},
+		{"i", print_signed_int},
 		{NULL, NULL}
 	};
 
@@ -24,7 +24,7 @@ char (*get_specifer(char s))(va_list)
 	{
 		if (s == *conversion[i].specifier)
 		{
-			return (conversion[i].print_sp);
+			return (conversion[i].printf_sp);
 		}
 		i++;
 

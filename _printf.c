@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int printed_chars = 0;
-       	void (*print_sp)(va_list args);
+       	void (*printf_sp)(va_list args);
 
 	va_start(args, format);
 
@@ -21,17 +21,17 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			print_sp= get_specifier(*format);
+			printf_sp = get_specifier(*format);
 
 			if (print_sp)
 			{
-				print_sp(args);	// Call the appropriate specifier
+				printf_sp(args);
 			}
 		       	else
 			{
 				_putchar('%');
 				_putchar(*format);
-				printed_chars += 2;  // For the '%' and the specifier character
+				printed_chars += 2;
 			}
 		}
 		else
