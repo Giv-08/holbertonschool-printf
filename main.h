@@ -4,7 +4,7 @@
 
 /** 
 * structure - a new type to print variables
-*
+*first argument - format specifier
 */
 
 typedef struct specifier {
