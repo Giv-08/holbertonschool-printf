@@ -41,12 +41,13 @@ int print_string(va_list args)
 	{
 		str = "(null)";
 	}
-	len = _strlen(str)
+
+	len = _strlen(str);
 
 	while (*str != '\0')
 	{
 		_putchar(*str);
-		str++
+		str++;
 	}
 	return (len);
 }
