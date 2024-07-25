@@ -28,7 +28,8 @@ int _printf(const char *format, ...)
 
 			if (printf_sp)
 			{
-				printed_chars += printf_sp(args);
+				int len = printf_sp(args);
+				printed_chars += len;
 			}
 		       	else
 			{
