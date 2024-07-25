@@ -1,11 +1,13 @@
 #include "main.h"
 #include <stddef.h>
+
 /**
  * _strlen - returns the length of a string.
  * @s: string to be evaluated
  *
  * Return: length of the string
  */
+
 int _strlen(char *s)
 {
 	int i;
@@ -14,6 +16,7 @@ int _strlen(char *s)
 		;
 	return (i);
 }
+
 /**
  * print_char - prints char
  * @args: take 'args' as an argument
