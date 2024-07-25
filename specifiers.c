@@ -1,11 +1,13 @@
 #include "main.h"
 #include <stddef.h>
+
 /**
  * _strlen - returns the length of a string.
  * @s: string to be evaluated
  *
  * Return: length of the string
  */
+
 int _strlen(char *s)
 {
 	int i;
@@ -14,10 +16,11 @@ int _strlen(char *s)
 		;
 	return (i);
 }
+
 /**
  * print_char - prints char
  * @args: take 'args' as an argument
- * Return: 1 character
+ * Return: 1  indicate that one character was printed
  */
 
 int print_char(va_list args)
@@ -94,7 +97,7 @@ int print_int(va_list args)
 /**
  * print_percent - prints a %
  * @args: take 'args' as an argument
- * Return: 1 character
+ * Return: 1 indicate that one character was printed
  */
 
 int print_percent(va_list args)
