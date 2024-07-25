@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int printed_chars = 0;
+	int count;
        	int (*printf_sp)(va_list args);
 
 	va_start(args, format);
@@ -28,8 +29,11 @@ int _printf(const char *format, ...)
 
 			if (printf_sp)
 			{
-				int len = printf_sp(args);
-				printed_chars += len;
+				count = printf_sp(args);
+				if (count >= 0)
+				{	
+					printed_chars = printed_chars + count;
+				}
 			}
 		       	else
 			{
