@@ -1,6 +1,19 @@
 #include "main.h"
 #include <stddef.h>
+/**
+ * _strlen - returns the length of a string.
+ * @s: string to be evaluated
+ *
+ * Return: length of the string
+ */
+int _strlen(char *s)
+{
+	int i;
 
+	for (i = 0; s[i] != '\0'; i++)
+		;
+	return (i);
+}
 /**
  * print_char - prints char
  * @args: take 'args' as an argument
@@ -21,19 +34,21 @@ int print_char(va_list args)
 
 int print_string(va_list args)
 {
-	int i = 0;
 	char *str = va_arg(args, char *);
+	int len = 0;
 
 	if (str == NULL)
 	{
 		str = "(null)";
 	}
-	while (str[i] != '\0')
+	len = _strlen(str)
+
+	while (*str != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(*str);
+		str++
 	}
-	return (i);
+	return (len);
 }
 
 /**
