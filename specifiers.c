@@ -4,13 +4,13 @@
 /**
  * print_char - prints char
  * @args: take 'args' as an argument
- * Return: 0
+ * Return: 1 character
  */
 
 int print_char(va_list args)
 {
 	_putchar(va_arg(args, int));
-	return (0);
+	return (1);
 }
 
 /**
@@ -42,9 +42,9 @@ int print_string(va_list args)
  * Return: an int
  */
 
-int print_int(va_list arg)
+int print_int(va_list args)
 {
-	int num = va_arg(arg, int);
+	int num = va_arg(args, int);
 	unsigned int pos_num;
 	int len, x = 1, i = 0;
 
@@ -62,7 +62,7 @@ int print_int(va_list arg)
 	while (pos_num / x >= 10)
 	{
 		x = x * 10;
-	} 
+	}
 
 	while (x > 0)
 	{
@@ -78,7 +78,7 @@ int print_int(va_list arg)
 /**
  * print_percent - prints a %
  * @args: take 'args' as an argument
- * Return: 0
+ * Return: 1 character
  */
 
 int print_percent(va_list args)
@@ -86,5 +86,5 @@ int print_percent(va_list args)
 	(void)args;
 
 	_putchar('%');
-	return (0);
+	return (1);
 }
