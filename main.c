@@ -22,5 +22,6 @@ int main(void)
 		fflush(stdout);
 		return (1);
 	}
+	printf("YAY!!!!\n");
 	return (0);
 }

@@ -18,13 +18,12 @@ int _printf(const char *format, ...)
        	int (*printf_sp)(va_list args);
 
 	va_start(args, format);
-	
-	if (strcmp(format, "%") == 0)
+
+	if (format && strlen(format) == 1 && format[0] == '%')
 	{
-		va_end(args);
-		return 0;
+		return -1;
 	}
-	
+
 	while (*format)
 	{
 		if (*format == '%')
