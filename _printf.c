@@ -23,14 +23,20 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			if (*format == '\0')
+			{
 				break;
+			}
+			else if (*format == '%' && printed_chars == 1)
+			{
+				break;
+			}
 
 			printf_sp = get_specifier(*format);
 
 			if (printf_sp)
 			{
 				count = printf_sp(args);
-				if (count >= 0)
+				if (count > 0)
 				{
 					printed_chars = printed_chars + count;
 				}

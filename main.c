@@ -9,12 +9,13 @@
  */
 int main(void)
 {
-    int len;
-    int len2;
+    int len, len2;
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
 
+    _printf("%");
+    printf("%");
     _printf("%i\n", INT_MAX);
     _printf("%i\n", INT_MIN);
     _printf("iddi%diddiiddi\n", 1024);
