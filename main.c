@@ -9,13 +9,16 @@
  */
 int main(void)
 {
-    int len, len2;
+    int len, len2, len3, len4;
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
 
-    _printf("%");
-    printf("%");
+    len3 = _printf("%");
+    len4 = printf("%");
+
+    _printf("Len3:[%d]\n", len3);
+    printf("Len4:[%d]\n", len4);
     _printf("%i\n", INT_MAX);
     _printf("%i\n", INT_MIN);
     _printf("iddi%diddiiddi\n", 1024);
