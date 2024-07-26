@@ -19,7 +19,12 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && printed_chars == 1)
+		{
+			printed_chars = 0;
+			break;
+		}
+		else if (*format == '%')
 		{
 			format++;
 			if (*format == '\0')
@@ -43,10 +48,6 @@ int _printf(const char *format, ...)
 				_putchar(*format);
 				printed_chars += 2;
 			}
-		}
-		else if (*format == '%' && printed_chars == 1)
-		{
-			break;
 		}
 		else
 		{
