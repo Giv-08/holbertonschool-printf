@@ -19,9 +19,8 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format == '%' && printed_chars == 1)
+		if (*format == '%' && format[1] == '\0')
 		{
-			printed_chars = 0;
 			break;
 		}
 		else if (*format == '%')
