@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
 /**
  * _printf - produces output according to a format.
  * @format: is a string with format specifiers.
@@ -16,14 +18,16 @@ int _printf(const char *format, ...)
        	int (*printf_sp)(va_list args);
 
 	va_start(args, format);
-
+	
+	if (strcmp(format, "%") == 0)
+	{
+		va_end(args);
+		return 0;
+	}
+	
 	while (*format)
 	{
-		if (*format == '%' && format[1] == '\0')
-		{
-			break;
-		}
-		else if (*format == '%')
+		if (*format == '%')
 		{
 			format++;
 			if (*format == '\0')
@@ -54,7 +58,7 @@ int _printf(const char *format, ...)
 			printed_chars++;
 		}
 		format++;
-    }
+	}
 	va_end(args);
 	return (printed_chars);
 }
