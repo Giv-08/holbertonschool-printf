@@ -26,10 +26,6 @@ int _printf(const char *format, ...)
 			{
 				break;
 			}
-			else if (*format == '%' && printed_chars == 1)
-			{
-				break;
-			}
 
 			printf_sp = get_specifier(*format);
 
@@ -47,6 +43,10 @@ int _printf(const char *format, ...)
 				_putchar(*format);
 				printed_chars += 2;
 			}
+		}
+		else if (*format == '%' && printed_chars == 1)
+		{
+			break;
 		}
 		else
 		{
