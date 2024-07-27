@@ -65,7 +65,20 @@ converted.
 .With (void)args; we can _putchar('%') and be printed on standard output
 as %.
 .d% and i%@ i is a signed integer (e.g., int = 0) whilst d is for signed
-integer type were it can denote a negative number.   
+integer type were it can denote a negative number.
+.Number characters will be printed to stdout via declaring the function prototype
+int print_int(va_list args); if the condition was num < 0, it will write a negative
+number on stdout with _putchar () function and else if its a positive number
+pos_num = num;
+.x in printf("%x\n") prints a hexadecimal specifier that convert number to
+a string of hexadecimal digits where len is taken into account for length.
+.get_specifier file
+.has int (*get_specifier(char s))(va_list) is a useful prototype that access the
+information of the specific format conversion to convert int to characters
+that can printed in stdout. va_list has all information of arguments for format
+conversion.
+.Function pointer - *print_sp is a handle function that produces the actual
+output.
+._putchar() writes each character in the standard output.     
 .Author
 .Chutima Puthachon, Angela Enriquez Garcia, Mary Ruth G. Fletcher
-
