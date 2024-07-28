@@ -7,8 +7,8 @@
 .DESCRIPTION 
 .The functions in the printf() family generates an output according to
 a format parameter and list of arguments. A format string consists of 
-texts and characters that are printed on the standard output with a format 
-specifier. Format specifiers denoting the symbol (%) at the beginning, is 
+texts and characters that are printed on the standard output.
+Format specifiers denoting the symbol (%) at the beginning, is 
 placed following with additional arguments. The critical component is a 
 specifier character that determines the type of argument. 
 .printf("Age: %d", 65);
@@ -73,12 +73,41 @@ pos_num = num;
 .x in printf("%x\n") prints a hexadecimal specifier that convert number to
 a string of hexadecimal digits where len is taken into account for length.
 .get_specifier file
-.has int (*get_specifier(char s))(va_list) is a useful prototype that access the
+.has int (*get_specifier(char s))(va_list) is a function prototype that access the
 information of the specific format conversion to convert int to characters
 that can printed in stdout. va_list has all information of arguments for format
 conversion.
 .Function pointer - *print_sp is a handle function that produces the actual
 output.
-._putchar() writes each character in the standard output.     
+._putchar() writes each character in the standard output.
+.EXAMPLE
+#include <stdio.h>
+printf("Let's try to printf a simple sentence.\n");
+.To print a character H
+printf("Character:[%c]\n", 'H')
+Output: Let's try to printf a simple sentence
+        Character:[H]
+/*as %c is a character specifier for printing character*/
+.Allocating characters and entire string length while printing it to stdout:
+int _printf(const char *format, ...)
+{
+int string_print = 0;
+va_list ap;
+if (format == NULL)/*if format changed it will terminate*/
+return (-1);
+va_start(ap, format)/*format as the first parameter for printf function*/
+while (*format)/*loop that interated through each characters of format string*/
+{
+if (*format == 'c')
+{
+char c = va_arg(ap, int);/*handle 'c' character, using va_arg enlist next argument
+va_list for char*/
+putchar(*format);
+string_print++/*track number of characterd to be printed
+}
+va_end(ap);
+return (string_print);
+}
+}
 .Author
 .Chutima Puthachon, Angela Enriquez Garcia, Mary Ruth G. Fletcher
