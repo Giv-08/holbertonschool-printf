@@ -6,11 +6,12 @@
 .int printf(const char *format ...);
 .DESCRIPTION 
 .The functions in the printf() family generates an output according to
-a format parameter and list of arguments. A format string consists of 
-texts and characters that are printed on the standard output.
+a format parameter with its list of arguments. A format string consists of 
+texts and characters that are printed on the standard output (stdout).
 Format specifiers denoting the symbol (%) at the beginning, is 
 placed following with additional arguments. The critical component is a 
-specifier character that determines the type of argument. 
+specifier character that determines the type of argument that be printed.
+.Example: 
 .printf("Age: %d", 65);
 .Output: 
 .Age: 65 
@@ -18,34 +19,35 @@ specifier character that determines the type of argument.
 .Upon successful return, the printf() return the number of
 .characters printed (excluding the null byte used to end output to
 .strings).
-.If an output error is encountered, a -1 is returned.
+.If an output error is encountered, -1 is returned.
 .Variadic functions with printf()
-.Are functions that can take multiple of arguments, this adds flexibility 
-of which printf functions allows several arguments to be passed in a formatted 
-string. Variadic functions consists of one fixed variable and then an ellipsis 
-(...¦) as the last parameter defining that it can take various arguments. This
+.are functions that can take multiple of arguments, this allows printf () to
+print string format whilst, taking multiple variable arguments controlled by
+format specifiers. 
+.Variadic functions consists of one fixed variable and then an ellipsis 
+(...¦)-  as the last parameter define by taking various arguments. This
 function is assessed under the header <stdarg.h> with the following macro methods:
 .va_list@ holds the information required by va_start, va_arg, va_end and va_copy.
 va_list args; is declaring va_list variable to manage list of arguments to pass 
-the function. 
-.va_start@ "Starting the list" it initialises the va_list arguments to start a 
-variable. va_start(args, format); whereas in this case the variable that is
-pointed is the format which is the last fixed argument in the variadic function
+through varibales and function. 
+.va_start@ "Starting the list"- it initialises the va_list arguments to start a 
+variable. va_start(args, format); whereas in this case, the variable that is
+pointed, is the format which is the last fixed argument in the variadic function
 before it calls to va_arg.
 .va_arg@ in a printf() function, this method is "fetching" or else retrieving
 the next argument within the va_list (args) once it is started by va_start.
 It is a useful method where it retrieves the next argument from va_list
-(e.g., va_list args) and accept the value of pointed variable char to a character
-str, within this syntax: char *str = va_arg(args, char *);. This allows to
-increment str str++; which enable str pass as an argument string that can be
-printed on the stdout. va_end: must matched the corresponding invocation of
+accept the value of pointed variable char to a character str, within 
+this syntax: char *str = va_arg(args, char *);. This allows to
+increment str (str++); which enable the next format string to be printed in stdout.
+va_end: must matched the corresponding invocation of
 va_start (e.g., va_start(args, format); and va_end(args)).
 After calling va_end(args), it will end the passing argument and return the
 value (str). 
 .Syntax:
 .int function_name(data_type variable_name,...)
 .Conversion specifiers
-.Or format specifiers define what to be printed into the standard output.
+.Or format specifiers whihc define what is to be printed into stdout.
 They denote the % symbol for example %d to print a number or decimal. It
 tells the compiler the information that the user wants to be printed. However,
 without indicating % symbol within syntax it will produce an error. 
@@ -53,7 +55,7 @@ without indicating % symbol within syntax it will produce an error.
 syntax - int (*get_specifier(char s))(va_list) is calling the argument pointing
 to the function pointer *get_specifier. When the function hit an array -
 {"c", print_char}, the compiler will read and print the character string on
-stdout. The int is converted into character.
+stdout. While, int is converted into character.
 .s%@ is a string format. str_len function calculates the length of the string.
 syntax - char *str = va_arg(args, char *); as args retrieve the value of
 function pointer *str. This allows function to print a string. Together
@@ -62,7 +64,7 @@ number of characters plus the lenght of string as what it was illustrated by
 the syntax - chara_print += str_len.
 .%%@ it prints the % character.The format specifier is %% with no argument
 converted. 
-.With (void)args; we can _putchar('%') and be printed on standard output
+.With (void)args; _putchar('%') and be printed on standard output
 as %.
 .d% and i%@ i is a signed integer (e.g., int = 0) whilst d is for signed
 integer type were it can denote a negative number.
@@ -87,25 +89,56 @@ Output: Let's try to printf a simple sentence
         Character:[H]
 /*as %c is a character specifier for printing character*/
 .Allocating characters and entire string length while printing it to stdout:
+#include "main.h"
+#include <stdlib.h>
+#include <string.h>
+
+/**
+ * _printf - produces output according to a format
+ * @format: is a string with format specifiers
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
-int string_print = 0;
-va_list ap;
-if (format == NULL)/*if format changed it will terminate*/
-return (-1);
-va_start(ap, format)/*format as the first parameter for printf function*/
-while (*format)/*loop that interated through each characters of format string*/
-{
-if (*format == 'c')
-{
-char c = va_arg(ap, int);/*handle 'c' character, using va_arg enlist next argument
-va_list for char*/
-putchar(*format);
-string_print++/*track number of characterd to be printed
-}
-va_end(ap);
-return (string_print);
-}
+	va_list args;
+	int printed_chars = 0, count;
+	int (*printf_sp)(va_list args);
+
+	va_start(args, format);/*format is the first parameter of printf function*/
+
+	if (format && strlen(format) == 1 && format[0] == '%')/*if the lenght and format
+		return (-1);                                   changed it needs to end program*/      
+	while (*format)/* while loop to interate one character and another*/
+	{
+		if (*format == '%')
+		{
+			format++;/*it will pass through format string with % symbol*/
+			if (*format == '\0')
+				break;/*if format did not pass througb % symbol*/
+			printf_sp = get_specifier(*format);/*calling *get_specifier*/
+
+			if (printf_sp)
+			{
+				count = printf_sp(args);
+				if (count > 0)
+					printed_chars = printed_chars + count;
+			}
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				printed_chars += 2;
+			}
+		}
+		else
+		{
+			_putchar(*format);
+			printed_chars++;
+		}
+		format++;
+	}
+	va_end(args);
+	return (printed_chars);
 }
 .Author
 .Chutima Puthachon, Angela Enriquez Garcia, Mary Ruth G. Fletcher
