@@ -14,7 +14,7 @@ specifier character that determines the type of argument.
 .printf("Age: %d", 65);
 .Output: 
 .Age: 65 
-.RETURN VALUE    
+.RETURN VALUE
 .Upon successful return, the printf() return the number of
 .characters printed (excluding the null byte used to end output to
 .strings).
@@ -70,8 +70,6 @@ integer type were it can denote a negative number.
 int print_int(va_list args); if the condition was num < 0, it will write a negative
 number on stdout with _putchar () function and else if its a positive number
 pos_num = num;
-.x in printf("%x\n") prints a hexadecimal specifier that convert number to
-a string of hexadecimal digits where len is taken into account for length.
 .get_specifier file
 .has int (*get_specifier(char s))(va_list) is a function prototype that access the
 information of the specific format conversion to convert int to characters
