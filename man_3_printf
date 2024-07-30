@@ -4,7 +4,9 @@
 .SYNOPSIS 
 .#include "main.h"
 .int printf(const char *format ...);
-.DESCRIPTION 
+
+.DESCRIPTION
+
 .The functions in the printf() family generates an output according to
 a format parameter with its list of arguments. A format string consists of 
 texts and characters that are printed on the standard output (stdout).
@@ -15,7 +17,9 @@ specifier character that determines the type of argument that be printed.
 .printf("Age: %d", 65);
 .Output: 
 .Age: 65 
+
 .RETURN VALUE
+
 .Upon successful return, the printf() return the number of
 .characters printed (excluding the null byte used to end output to
 .strings).
@@ -44,7 +48,9 @@ va_end: must matched the corresponding invocation of
 va_start (e.g., va_start(args, format); and va_end(args)).
 After calling va_end(args), it will end the passing argument and return the
 value (str). 
+
 .Syntax:
+
 .int function_name(data_type variable_name,...)
 .Conversion specifiers
 .Or format specifiers whihc define what is to be printed into stdout.
@@ -72,7 +78,9 @@ integer type were it can denote a negative number.
 int print_int(va_list args); if the condition was num < 0, it will write a negative
 number on stdout with _putchar () function and else if its a positive number
 pos_num = num;
+
 .get_specifier file
+
 .has int (*get_specifier(char s))(va_list) is a function prototype that access the
 information of the specific format conversion to convert int to characters
 that can printed in stdout. va_list has all information of arguments for format
@@ -80,7 +88,9 @@ conversion.
 .Function pointer - *print_sp is a handle function that produces the actual
 output.
 ._putchar() writes each character in the standard output.
+
 .EXAMPLE
+
 #include <stdio.h>
 printf("Let's try to printf a simple sentence.\n");
 .To print a character H
@@ -88,34 +98,27 @@ printf("Character:[%c]\n", 'H')
 Output: Let's try to printf a simple sentence
         Character:[H]
 /*as %c is a character specifier for printing character*/
-.Allocating characters and entire string length while printing it to stdout:
-#include "main.h"
-#include <stdlib.h>
-#include <string.h>
 
-/**
- * _printf - produces output according to a format
- * @format: is a string with format specifiers
- * Return: the number of characters printed
- */
+.Allocating characters and entire string length while printing it to stdout:
+
 int _printf(const char *format, ...)
 {
 	va_list args;
 	int printed_chars = 0, count;
 	int (*printf_sp)(va_list args);
 
-	va_start(args, format);/*format is the first parameter of printf function*/
+	va_start(args, format); /* format is the first parameter of printf function */
 
-	if (format && strlen(format) == 1 && format[0] == '%')/*if the lenght and format
-		return (-1);                                   changed it needs to end program*/      
-	while (*format)/* while loop to interate one character and another*/
+	if (format && strlen(format) == 1 && format[0] == '%')  /* check if in the args has only % then return -1 (length) */
+		return (-1);                                    
+	while (*format) /* while loop to interate one character and another */
 	{
 		if (*format == '%')
 		{
-			format++;/*it will pass through format string with % symbol*/
-			if (*format == '\0')
-				break;/*if format did not pass througb % symbol*/
-			printf_sp = get_specifier(*format);/*calling *get_specifier*/
+			format++;
+			if (*format == '\0') /* if the current character is the end */
+				break; /* break the loop */
+			printf_sp = get_specifier(*format); /* calling *get_specifier */
 
 			if (printf_sp)
 			{
